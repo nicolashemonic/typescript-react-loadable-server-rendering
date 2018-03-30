@@ -1,7 +1,7 @@
 {
     // Server build is made in two times
     // 1. TypeScript type check and keep intact the source code
-    // 2. Babel transform this code for the runtime:
+    // 2. Babel transform TypeScript output for the runtime:
     // * Presets for code transformation: React / es2015
     // * Plugins for server side rendering: syntax-dynamic-import / dynamic-import-node / react-loadable/babel
     "extends": "./tsconfig.base.json",

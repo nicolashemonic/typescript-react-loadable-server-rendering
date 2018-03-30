@@ -5,15 +5,21 @@ import ReactDOMServer from "react-dom/server";
 import Loadable from "react-loadable";
 import { getBundles } from "react-loadable/webpack";
 import App from "../universal/app";
+import { StaticRouter } from "react-router";
 
 const stats = require("../../client/reactLoadable.json");
 const app = express();
 
-app.get("/", (req, res) => {
+app.use("/Client", express.static(path.join(__dirname, "..", "..", "Client")));
+
+app.get("*", (req, res) => {
+    let context = {};
     let modules: string[] = [];
     let html = ReactDOMServer.renderToString(
         <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-            <App />
+            <StaticRouter location={req.url} context={context}>
+                <App />
+            </StaticRouter>
         </Loadable.Capture>
     );
 
@@ -49,8 +55,6 @@ app.get("/", (req, res) => {
     </html>
   `);
 });
-
-app.use("/Client", express.static(path.join(__dirname, "..", "..", "Client")));
 
 Loadable.preloadAll()
     .then(() => {
