@@ -10,6 +10,8 @@ window["main"] = () => {
     const preloadedState = window["__PRELOADED_STATE__"];
     const store = createStore(preloadedState);
 
+    delete window["__PRELOADED_STATE__"];
+
     Loadable.preloadReady().then(() => {
         ReactDOM.hydrate(
             <Provider store={store}>
