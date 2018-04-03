@@ -1,12 +1,11 @@
 import React from "react";
-import { LoadableAbout, LoadableHome } from "../loadable/pages";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { routes } from "../Routes";
 
 export default function App() {
     return (
         <div>
-            <Route exact path="/" component={LoadableHome} />
-            <Route exact path="/about" component={LoadableAbout} />
+            <Switch>{routes.map(route => <Route {...route} key={route.path} />)}</Switch>
         </div>
     );
 }

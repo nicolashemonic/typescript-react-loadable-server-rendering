@@ -1,31 +1,35 @@
 import React from "react";
-import { LoadableDescription } from "../../loadable/components";
+//import { LoadableDescription } from "../../loadable/components";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { toggleDescriptionVisibility } from "../../actions";
 
-export default class About extends React.Component<undefined, { visible: boolean }> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            visible: false
-        };
-    }
+const About = props => {
+    return (
+        <div>
+            <h1>About</h1>
+            <Link to="/">To Home</Link>
+            <p>
+                <button onClick={props.toggleDescriptionVisiblity}>Toggle Description</button>
+            </p>
+            {props.visibleDescription && <p>{props.description}</p>}
+        </div>
+    );
+};
 
-    toggle = () => {
-        this.setState({
-            visible: !this.state.visible
-        });
+const mapStateToProps = state => {
+    return {
+        visibleDescription: state.about.visibleDescription,
+        description: state.about.description
     };
+};
 
-    render() {
-        return (
-            <div>
-                <h1>About</h1>
-                <Link to="/">To Home</Link>
-                <p>
-                    <button onClick={this.toggle}>Toggle Description</button>
-                </p>
-                {this.state.visible && <LoadableDescription />}
-            </div>
-        );
-    }
-}
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        toggleDescriptionVisiblity: () => {
+            return dispatch(toggleDescriptionVisibility());
+        }
+    };
+};
+
+export default connect<any, any, any>(mapStateToProps, mapDispatchToProps)(About);
