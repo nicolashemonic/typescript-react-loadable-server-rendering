@@ -1,15 +1,15 @@
 import express, { Request, Response } from "express";
-import path from "path";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import Loadable from "react-loadable";
 import { getBundles } from "react-loadable/webpack";
-import App from "../universal/app";
-import { StaticRouter, matchPath } from "react-router";
-import createStore from "../universal/Store";
 import { Provider } from "react-redux";
-import { routes } from "../universal/Routes";
+import { matchPath, StaticRouter } from "react-router";
+
+import App from "../universal/app";
 import { IState } from "../universal/models";
+import { routes } from "../universal/routes";
+import createStore from "../universal/store";
 import { IReactLoadableWebpackBundle } from "../universal/types";
 
 const stats = require("./reactLoadable.json");

@@ -1,5 +1,5 @@
-import { IAboutState } from "../models";
 import { AboutAction } from "../actions";
+import { IAboutState } from "../models";
 
 const initialAboutState: IAboutState = {
     description: "",

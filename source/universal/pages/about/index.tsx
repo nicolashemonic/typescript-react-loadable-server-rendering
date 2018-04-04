@@ -1,9 +1,10 @@
 import React from "react";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 import { Link, RouteComponentProps } from "react-router-dom";
-import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
-import { fetchDescription, IFetchDescriptionSuccess } from "../../actions";
-import { IState } from "../../models";
 import { Action } from "redux";
+
+import { fetchDescription } from "../../actions";
+import { IState } from "../../models";
 
 interface IMapStateToProps {
     locationChanged: boolean;

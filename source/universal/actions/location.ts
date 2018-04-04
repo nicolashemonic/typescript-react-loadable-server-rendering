@@ -1,5 +1,4 @@
-import { Action, ActionCreator, Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
+import { Action, ActionCreator } from "redux";
 
 export type LocationAction = ISetLocationChanged;
 

@@ -1,11 +1,11 @@
 import React from "react";
-import { Route, Switch, withRouter, RouteComponentProps } from "react-router-dom";
-import { routes } from "../Routes";
-import { Dispatch } from "redux";
-import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
+import { Route, RouteComponentProps, Switch, withRouter } from "react-router-dom";
+import { Action } from "redux";
+
 import { setLocationChanged } from "../actions";
 import { IState } from "../models";
-import { Action } from "redux";
+import { routes } from "../routes";
 
 interface IMapStateToProps {}
 

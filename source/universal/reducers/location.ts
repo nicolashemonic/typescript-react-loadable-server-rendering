@@ -1,5 +1,5 @@
-import { ILocationState } from "../models";
 import { LocationAction } from "../actions";
+import { ILocationState } from "../models";
 
 const initialAboutState: ILocationState = {
     locationChanged: false

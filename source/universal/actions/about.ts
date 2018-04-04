@@ -1,5 +1,6 @@
-import { Action, ActionCreator, Dispatch } from "redux";
+import { Action, ActionCreator } from "redux";
 import { ThunkAction } from "redux-thunk";
+
 import { IState } from "../models";
 
 export type AboutAction =

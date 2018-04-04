@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Loadable from "react-loadable";
-import App from "../universal/app";
-import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+
+import App from "../universal/app";
 import createStore from "../universal/Store";
 
 window.main = () => {
