@@ -32,12 +32,7 @@ class App extends React.Component<IAppProps, undefined> {
     render() {
         return (
             <div>
-                <Switch>
-                    {routes.map(route => {
-                        const RouteWithKey = Route as any; // Type error
-                        return <RouteWithKey {...route} key={route.path} />;
-                    })}
-                </Switch>
+                <Switch>{routes.map(route => <Route {...route} key={route.path} />)}</Switch>
             </div>
         );
     }

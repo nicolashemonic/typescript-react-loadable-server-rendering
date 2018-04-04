@@ -2,8 +2,6 @@ const path = require("path");
 const { ReactLoadablePlugin } = require("react-loadable/webpack");
 
 module.exports = {
-    mode: "development",
-
     // The main entry point of the application
     entry: {
         main: path.join(__dirname, "..", "source", "client")
@@ -53,9 +51,6 @@ module.exports = {
             }
         ]
     },
-
-    // Enable TypeScript debugging
-    devtool: "inline-source-map",
 
     // React Loadable generate stats for mapping modules to bundle
     // This file is used on server side rendering to determine which bundle need to be load
