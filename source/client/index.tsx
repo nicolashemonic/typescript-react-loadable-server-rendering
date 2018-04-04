@@ -6,11 +6,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import createStore from "../universal/Store";
 
-window["main"] = () => {
-    const preloadedState = window["__PRELOADED_STATE__"];
+window.main = () => {
+    const preloadedState = window.__PRELOADED_STATE__;
     const store = createStore(preloadedState);
 
-    delete window["__PRELOADED_STATE__"];
+    delete window.__PRELOADED_STATE__;
 
     Loadable.preloadReady().then(() => {
         ReactDOM.hydrate(

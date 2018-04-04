@@ -1,7 +1,7 @@
+import { IAboutState } from "../models";
 import { AboutAction } from "../actions";
 
-const initialAboutState = {
-    visibleDescription: false,
+const initialAboutState: IAboutState = {
     description: "",
     receivedAt: 0,
     isLoading: false
@@ -9,11 +9,6 @@ const initialAboutState = {
 
 export default function about(state = initialAboutState, action: AboutAction) {
     switch (action.type) {
-        case "TOGGLE_DESCRIPTION_VISIBLITY":
-            return {
-                ...state,
-                visibleDescription: !state.visibleDescription
-            };
         case "FETCH_DESCRIPTION_REQUEST":
             return {
                 ...state,

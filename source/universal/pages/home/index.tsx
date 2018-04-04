@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 
-export default function Home() {
+interface IHomeProps extends RouteComponentProps<any> {}
+
+export default function Home(props: IHomeProps) {
     return (
         <div>
             <h1>Home</h1>

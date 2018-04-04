@@ -1,26 +1,32 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter, RouteComponentProps } from "react-router-dom";
 import { routes } from "../Routes";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import { Dispatch } from "redux";
+import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
 import { setLocationChanged } from "../actions";
+import { IState } from "../models";
+import { Action } from "redux";
 
-class App extends React.Component<any, any> {
-    unsubscribeHistory;
+interface IMapStateToProps {}
 
+interface IMapDispatchToProps {
+    setLocationChanged: () => Action;
+}
+
+interface IAppOwnProps extends RouteComponentProps<any> {}
+
+interface IAppProps extends IMapStateToProps, IMapDispatchToProps, IAppOwnProps {}
+
+class App extends React.Component<IAppProps, undefined> {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        this.unsubscribeHistory = this.props.history.listen(location => {
+        const unsubscribeHistory = this.props.history.listen(location => {
             this.props.setLocationChanged();
-            this.unsubscribeHistory();
+            unsubscribeHistory();
         });
-    }
-
-    componentWillUnmount() {
-        this.unsubscribeHistory();
     }
 
     render() {
@@ -37,16 +43,23 @@ class App extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = state => {
-    return {};
-};
+const mapStateToProps: MapStateToProps<IMapStateToProps, IAppOwnProps, IState> = (
+    state,
+    ownProps
+): IMapStateToProps => ({});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        setLocationChanged: () => {
-            return dispatch(setLocationChanged());
-        }
-    };
-};
+const mapDispatchToProps: MapDispatchToProps<IMapDispatchToProps, IAppOwnProps> = (
+    dispatch,
+    ownProps
+) => ({
+    setLocationChanged: () => {
+        return dispatch(setLocationChanged());
+    }
+});
 
-export default withRouter(connect<any, any, any>(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter<IAppOwnProps>(
+    connect<IMapStateToProps, IMapDispatchToProps, IAppOwnProps>(
+        mapStateToProps,
+        mapDispatchToProps
+    )(App)
+);

@@ -1,10 +1,25 @@
 import React from "react";
-//import { LoadableDescription } from "../../loadable/components";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { toggleDescriptionVisibility, fetchDescription } from "../../actions";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { connect, MapStateToProps, MapDispatchToProps } from "react-redux";
+import { fetchDescription, IFetchDescriptionSuccess } from "../../actions";
+import { IState } from "../../models";
+import { Action } from "redux";
 
-class About extends React.Component<any, any> {
+interface IMapStateToProps {
+    locationChanged: boolean;
+    description: string;
+    isLoading: boolean;
+}
+
+interface IMapDispatchToProps {
+    fetchDescription: () => Promise<Action>;
+}
+
+interface IAboutOwnProps extends RouteComponentProps<any> {}
+
+interface IAboutProps extends IMapStateToProps, IMapDispatchToProps, IAboutOwnProps {}
+
+class About extends React.Component<IAboutProps, undefined> {
     constructor(props) {
         super(props);
     }
@@ -14,48 +29,38 @@ class About extends React.Component<any, any> {
         }
     }
     description() {
-        if (this.props.visibleDescription) {
-            if (this.props.isLoading) {
-                return <p>Loading...</p>;
-            }
-            return <p>{this.props.description}</p>;
-        }
-        return null;
+        return this.props.isLoading ? <p>Loading...</p> : <p>{this.props.description}</p>;
     }
     render() {
         return (
             <div>
                 <h1>About</h1>
                 <Link to="/">To Home</Link>
-                <p>
-                    <button onClick={this.props.toggleDescriptionVisiblity}>
-                        Toggle Description
-                    </button>
-                </p>
                 {this.description()}
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        visibleDescription: state.about.visibleDescription,
-        description: state.about.description,
-        isLoading: state.about.isLoading,
-        locationChanged: state.location.locationChanged
-    };
-};
+const mapStateToProps: MapStateToProps<IMapStateToProps, IAboutOwnProps, IState> = (
+    state,
+    ownProps
+) => ({
+    locationChanged: state.location.locationChanged,
+    description: state.about.description,
+    isLoading: state.about.isLoading
+});
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        toggleDescriptionVisiblity: () => {
-            return dispatch(toggleDescriptionVisibility());
-        },
-        fetchDescription: () => {
-            return dispatch(fetchDescription());
-        }
-    };
-};
+const mapDispatchToProps: MapDispatchToProps<IMapDispatchToProps, IAboutOwnProps> = (
+    dispatch,
+    ownProps
+) => ({
+    fetchDescription: () => {
+        return dispatch(fetchDescription());
+    }
+});
 
-export default connect<any, any, any>(mapStateToProps, mapDispatchToProps)(About);
+export default connect<IMapStateToProps, IMapDispatchToProps, IAboutOwnProps>(
+    mapStateToProps,
+    mapDispatchToProps
+)(About);

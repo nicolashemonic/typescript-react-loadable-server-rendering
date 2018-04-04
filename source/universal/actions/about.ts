@@ -1,56 +1,41 @@
+import { Action, ActionCreator, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
+import { IState } from "../models";
+
 export type AboutAction =
-    | IToggleDescriptionVisiblity
     | IFetchDescriptionFailure
     | IFetchDescriptionRequest
     | IFetchDescriptionSuccess;
 
-export interface IToggleDescriptionVisiblity {
-    type: "TOGGLE_DESCRIPTION_VISIBLITY";
-}
-
-export type toggleDescriptionVisibility = () => any;
-
-export const toggleDescriptionVisibility: toggleDescriptionVisibility = (): AboutAction => {
-    return {
-        type: "TOGGLE_DESCRIPTION_VISIBLITY"
-    };
-};
-
-export interface IFetchDescriptionRequest {
+export interface IFetchDescriptionRequest extends Action {
     type: "FETCH_DESCRIPTION_REQUEST";
 }
 
-export interface IFetchDescriptionSuccess {
+export interface IFetchDescriptionSuccess extends Action {
     type: "FETCH_DESCRIPTION_SUCCESS";
     receivedAt: number;
     description: string;
 }
 
-export interface IFetchDescriptionFailure {
+export interface IFetchDescriptionFailure extends Action {
     type: "FETCH_DESCRIPTION_FAILURE";
 }
 
-export function fetchDescriptionRequest(): AboutAction {
-    return {
-        type: "FETCH_DESCRIPTION_REQUEST"
-    };
-}
+const fetchDescriptionRequest: ActionCreator<IFetchDescriptionRequest> = () => ({
+    type: "FETCH_DESCRIPTION_REQUEST"
+});
 
-export function fetchDescriptionSuccess(description: string): AboutAction {
-    return {
-        type: "FETCH_DESCRIPTION_SUCCESS",
-        receivedAt: Date.now(),
-        description: description
-    };
-}
+const fetchDescriptionSuccess: ActionCreator<IFetchDescriptionSuccess> = (description: string) => ({
+    type: "FETCH_DESCRIPTION_SUCCESS",
+    receivedAt: Date.now(),
+    description: description
+});
 
-export function fetchDescriptionFailure(): AboutAction {
-    return {
-        type: "FETCH_DESCRIPTION_FAILURE"
-    };
-}
+const fetchDescriptionFailure: ActionCreator<IFetchDescriptionFailure> = () => ({
+    type: "FETCH_DESCRIPTION_FAILURE"
+});
 
-export const fetchDescription = () => {
+export const fetchDescription: ActionCreator<ThunkAction<Promise<Action>, IState, void>> = () => {
     return (dispatch, getState) => {
         dispatch(fetchDescriptionRequest());
         return new Promise(resolve => {

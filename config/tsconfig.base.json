@@ -13,6 +13,6 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "noImplicitAny": false,
-        "strict": false,
+        "strict": false
     }
 }

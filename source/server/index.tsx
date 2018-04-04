@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import path from "path";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
@@ -9,6 +9,8 @@ import { StaticRouter, matchPath } from "react-router";
 import createStore from "../universal/Store";
 import { Provider } from "react-redux";
 import { routes } from "../universal/Routes";
+import { IState } from "../universal/models";
+import { IReactLoadableWebpackBundle } from "../universal/types";
 
 const stats = require("../../client/reactLoadable.json");
 const app = express();
@@ -16,39 +18,44 @@ const app = express();
 app.use("/client", express.static(path.join(__dirname, "..", "..", "client")));
 app.use(handleRender);
 
-function handleRender(req, res) {
-    let context = {};
-    const promises = [];
-    const modules: string[] = [];
+function handleRender(req: Request, res: Response) {
+    const promises: Promise<any>[] = [];
     const store = createStore();
-    const html = ReactDOMServer.renderToString(
-        <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-            <Provider store={store}>
-                <StaticRouter location={req.url} context={context}>
-                    <App />
-                </StaticRouter>
-            </Provider>
-        </Loadable.Capture>
-    );
 
     routes.some(route => {
         const match = matchPath(req.path, route);
         if (match && route.fetchData) {
             promises.push(store.dispatch(route.fetchData()));
         }
-        return match as any;
+        return !!match;
     });
 
     Promise.all(promises).then(() => {
-        const preloadedState = store.getState();
-        const bundles = getBundles(stats, modules);
+        let modules: string[] = [];
+        let context = {};
+        const html = ReactDOMServer.renderToString(
+            <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+                <Provider store={store}>
+                    <StaticRouter location={req.url} context={context}>
+                        <App />
+                    </StaticRouter>
+                </Provider>
+            </Loadable.Capture>
+        );
+        const bundles: IReactLoadableWebpackBundle[] = getBundles(stats, modules);
         const styles = bundles.filter(bundle => bundle.file.endsWith(".css"));
         const scripts = bundles.filter(bundle => bundle.file.endsWith(".js"));
+        const preloadedState = store.getState();
         res.send(renderFullPage(html, styles, scripts, preloadedState));
     });
 }
 
-function renderFullPage(html, styles, scripts, preloadedState) {
+function renderFullPage(
+    html: string,
+    styles: IReactLoadableWebpackBundle[],
+    scripts: IReactLoadableWebpackBundle[],
+    preloadedState: IState
+) {
     const stylesHtml = styles
         .map(style => `<link href="/client/${style.file}" rel="stylesheet"/>`)
         .join("\n");
