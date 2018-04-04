@@ -5,9 +5,6 @@
     // * Presets for code transformation: React / es2015
     // * Plugins for server side rendering: syntax-dynamic-import / dynamic-import-node / react-loadable/babel
     "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "outDir": "../temp/server"
-    },
     "include": [
         "../source/server/index.tsx"
     ]

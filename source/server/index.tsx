@@ -15,7 +15,7 @@ import { IReactLoadableWebpackBundle } from "../universal/types";
 const stats = require("../../client/reactLoadable.json");
 const app = express();
 
-app.use("/client", express.static(path.join(__dirname, "..", "..", "client")));
+app.use("/client", express.static("client"));
 app.use(handleRender);
 
 function handleRender(req: Request, res: Response) {
