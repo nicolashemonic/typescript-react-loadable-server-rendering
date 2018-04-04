@@ -1,5 +1,4 @@
 {
-    // Client build is made from Webpack with ts-config plugin
     "extends": "./tsconfig.base.json",
     "include": [
         "../source/client/index.tsx"

@@ -12,7 +12,7 @@ import { routes } from "../universal/Routes";
 import { IState } from "../universal/models";
 import { IReactLoadableWebpackBundle } from "../universal/types";
 
-const stats = require("../../client/reactLoadable.json");
+const stats = require("./reactLoadable.json");
 const app = express();
 
 app.use("/client", express.static("client"));

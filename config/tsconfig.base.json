@@ -1,7 +1,10 @@
 {
     // TypeScript used only for static type checking and keep intact the source code
     // This behavior enable the possibility to use babel plugins for server side rendering:
-    // syntax-dynamic-import / dynamic-import-node / react-loadable/babel
+    // * Presets for code transformation: React + es2015
+    // * Plugins for server side rendering:
+    //      Frontend: syntax-dynamic-import + react-loadable/babel
+    //      Backend: dynamic-import-node + react-loadable/babel
     "compilerOptions": {
         // keep es2015 import
         "target": "es2015",
