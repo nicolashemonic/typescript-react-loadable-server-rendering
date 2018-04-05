@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 import express, { Request, Response } from "express";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
@@ -6,6 +8,7 @@ import { getBundles, IReactLoadableWebpackBundle } from "react-loadable/webpack"
 import { Provider } from "react-redux";
 import { matchPath, StaticRouter } from "react-router";
 
+import { setApiUrls } from "../universal/actions";
 import App from "../universal/app";
 import { IState } from "../universal/models";
 import { routes } from "../universal/routes";
@@ -15,11 +18,23 @@ const stats = require("./reactLoadable.json");
 const app = express();
 
 app.use("/client", express.static("client"));
+
+app.use("/api/description", function(req, res) {
+    res.setHeader("Content-Type", "application/json");
+    setTimeout(() => res.send(JSON.stringify({ description: "Description response" })), 1000);
+});
+
 app.use(handleRender);
 
 function handleRender(req: Request, res: Response) {
     const promises: Promise<any>[] = [];
     const store = createStore();
+
+    store.dispatch(
+        setApiUrls({
+            descriptionUrl: `${req.protocol}://${req.get("host")}/api/description`
+        })
+    );
 
     routes.some(route => {
         const match = matchPath(req.path, route);

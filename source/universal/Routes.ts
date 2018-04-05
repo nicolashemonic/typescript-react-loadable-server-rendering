@@ -7,7 +7,7 @@ import { fetchDescription } from "./actions";
 import { LoadableAbout, LoadableHome } from "./loadable";
 
 interface IRoute extends RouteProps {
-    fetchData?: () => ThunkAction<Promise<Action>, IState, void>;
+    fetchData?: () => ThunkAction<Promise<void>, IState, void>;
 }
 
 export const routes: IRoute[] = [

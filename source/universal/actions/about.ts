@@ -1,4 +1,5 @@
-import { Action, ActionCreator } from "redux";
+import axios, { AxiosPromise } from "axios";
+import { ActionCreator, Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import { IState } from "../models";
@@ -31,11 +32,15 @@ export type FetchDescriptionRequest = ReturnType<typeof fetchDescriptionRequest>
 export type FetchDescriptionFailure = ReturnType<typeof fetchDescriptionFailure>;
 export type FetchDescriptionSuccess = ReturnType<typeof fetchDescriptionSuccess>;
 
-export const fetchDescription: ActionCreator<ThunkAction<Promise<Action>, IState, void>> = () => {
-    return (dispatch, getState) => {
+export const fetchDescription: ActionCreator<ThunkAction<Promise<void>, IState, void>> = () => {
+    return async (dispatch, getState) => {
         dispatch(fetchDescriptionRequest());
-        return new Promise(resolve => {
-            setTimeout(() => resolve(dispatch(fetchDescriptionSuccess("About Description"))), 1000);
-        });
+        try {
+            const url = getState().api.descriptionUrl;
+            const response = await axios.get<{ description: string }>(url);
+            dispatch(fetchDescriptionSuccess(response.data.description));
+        } catch (e) {
+            console.log(e);
+        }
     };
 };

@@ -9,9 +9,7 @@ module.exports = {
     externals: [nodeExternals()],
 
     // The main entry point of the server application
-    entry: {
-        main: path.join(__dirname, "..", "source", "server")
-    },
+    entry: ["babel-polyfill", path.join(__dirname, "..", "source", "server")],
 
     // Generated bundle location
     output: {

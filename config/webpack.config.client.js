@@ -3,9 +3,7 @@ const { ReactLoadablePlugin } = require("react-loadable/webpack");
 
 module.exports = {
     // The main entry point of the application
-    entry: {
-        main: path.join(__dirname, "..", "source", "client")
-    },
+    entry: ["babel-polyfill", path.join(__dirname, "..", "source", "client")],
 
     // Main entry point plus each dynamic import generate a bundle
     // Ex: import(/* webpackChunkName: "hello" */"../components/hello") generate hello.js
