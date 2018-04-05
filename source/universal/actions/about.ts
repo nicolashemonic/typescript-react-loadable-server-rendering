@@ -4,37 +4,32 @@ import { ThunkAction } from "redux-thunk";
 import { IState } from "../models";
 
 export type AboutAction =
-    | IFetchDescriptionFailure
-    | IFetchDescriptionRequest
-    | IFetchDescriptionSuccess;
+    | FetchDescriptionFailure
+    | FetchDescriptionRequest
+    | FetchDescriptionSuccess;
 
-export interface IFetchDescriptionRequest extends Action {
-    type: "FETCH_DESCRIPTION_REQUEST";
-}
+export const FETCH_DESCRIPTION_REQUEST = "FETCH_DESCRIPTION_REQUEST";
+export const FETCH_DESCRIPTION_FAILURE = "FETCH_DESCRIPTION_FAILURE";
+export const FETCH_DESCRIPTION_SUCCESS = "FETCH_DESCRIPTION_SUCCESS";
 
-export interface IFetchDescriptionSuccess extends Action {
-    type: "FETCH_DESCRIPTION_SUCCESS";
-    receivedAt: number;
-    description: string;
-}
-
-export interface IFetchDescriptionFailure extends Action {
-    type: "FETCH_DESCRIPTION_FAILURE";
-}
-
-const fetchDescriptionRequest: ActionCreator<IFetchDescriptionRequest> = () => ({
-    type: "FETCH_DESCRIPTION_REQUEST"
+export const fetchDescriptionRequest = () => ({
+    type: FETCH_DESCRIPTION_REQUEST as typeof FETCH_DESCRIPTION_REQUEST,
+    isLoading: true
 });
-
-const fetchDescriptionSuccess: ActionCreator<IFetchDescriptionSuccess> = (description: string) => ({
-    type: "FETCH_DESCRIPTION_SUCCESS",
+export const fetchDescriptionFailure = () => ({
+    type: FETCH_DESCRIPTION_FAILURE as typeof FETCH_DESCRIPTION_FAILURE,
+    isLoading: false
+});
+export const fetchDescriptionSuccess = (description: string) => ({
+    type: FETCH_DESCRIPTION_SUCCESS as typeof FETCH_DESCRIPTION_SUCCESS,
     receivedAt: Date.now(),
-    description: description
+    description: description,
+    isLoading: false
 });
 
-const fetchDescriptionFailure: ActionCreator<IFetchDescriptionFailure> = () => ({
-    type: "FETCH_DESCRIPTION_FAILURE"
-});
+export type FetchDescriptionRequest = ReturnType<typeof fetchDescriptionRequest>;
+export type FetchDescriptionFailure = ReturnType<typeof fetchDescriptionFailure>;
+export type FetchDescriptionSuccess = ReturnType<typeof fetchDescriptionSuccess>;
 
 export const fetchDescription: ActionCreator<ThunkAction<Promise<Action>, IState, void>> = () => {
     return (dispatch, getState) => {

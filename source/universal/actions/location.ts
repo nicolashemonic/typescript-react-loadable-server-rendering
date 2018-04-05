@@ -1,13 +1,12 @@
 import { Action, ActionCreator } from "redux";
 
-export type LocationAction = ISetLocationChanged;
+export type LocationAction = SetLocationChanged;
 
-export interface ISetLocationChanged extends Action {
-    type: "SET_LOCATION_CHANGED";
-    locationChanged: boolean;
-}
+export const SET_LOCATION_CHANGED = "SET_LOCATION_CHANGED";
 
-export const setLocationChanged: ActionCreator<ISetLocationChanged> = () => ({
-    type: "SET_LOCATION_CHANGED",
+export const setLocationChanged = () => ({
+    type: SET_LOCATION_CHANGED as typeof SET_LOCATION_CHANGED,
     locationChanged: true
 });
+
+export type SetLocationChanged = ReturnType<typeof setLocationChanged>;

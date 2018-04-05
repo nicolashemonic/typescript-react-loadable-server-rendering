@@ -1,4 +1,9 @@
-import { AboutAction } from "../actions";
+import {
+    AboutAction,
+    FETCH_DESCRIPTION_FAILURE,
+    FETCH_DESCRIPTION_REQUEST,
+    FETCH_DESCRIPTION_SUCCESS
+} from "../actions";
 import { IAboutState } from "../models";
 
 const initialAboutState: IAboutState = {
@@ -9,22 +14,22 @@ const initialAboutState: IAboutState = {
 
 export default function about(state = initialAboutState, action: AboutAction) {
     switch (action.type) {
-        case "FETCH_DESCRIPTION_REQUEST":
+        case FETCH_DESCRIPTION_REQUEST:
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.isLoading
             };
-        case "FETCH_DESCRIPTION_SUCCESS":
+        case FETCH_DESCRIPTION_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
+                isLoading: action.isLoading,
                 receivedAt: action.receivedAt,
                 description: action.description
             };
-        case "FETCH_DESCRIPTION_FAILURE":
+        case FETCH_DESCRIPTION_FAILURE:
             return {
                 ...state,
-                isLoading: false
+                isLoading: action.isLoading
             };
         default:
             return state;
