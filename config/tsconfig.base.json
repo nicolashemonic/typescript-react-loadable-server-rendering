@@ -1,21 +1,34 @@
 {
-    // TypeScript used only for static type checking and keep intact the source code
+    // TypeScript type check *only* and keep intact the source code for Babel
     // This behavior enable the possibility to use babel plugins for server side rendering:
     // * Presets for code transformation: React + es2015
     // * Plugins for server side rendering:
     //      Frontend: syntax-dynamic-import + react-loadable/babel
     //      Backend: dynamic-import-node + react-loadable/babel
+
     "compilerOptions": {
         // keep es2015 import
         "target": "es2015",
+
         // Keep dynamic import
         "module": "esnext",
+
         // Keep jsx syntax
         "jsx": "preserve",
+
         // Allow import X from "x"
         "allowSyntheticDefaultImports": true,
+
+        // Find dependencies in node_modules
         "moduleResolution": "node",
-        "noImplicitAny": false,
-        "strict": false
+
+        // Full power of TypeScript with strict options enabled
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "strictNullChecks": true
     }
 }

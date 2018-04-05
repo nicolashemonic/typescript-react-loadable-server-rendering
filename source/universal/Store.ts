@@ -10,9 +10,11 @@ const loggerMiddleware = createLogger({
 });
 
 export default function createStore(preloadedState?: IState) {
-    return createReduxStore<IState>(
-        reducers,
-        preloadedState,
-        applyMiddleware(thunkMiddleware, loggerMiddleware)
-    );
+    return preloadedState
+        ? createReduxStore<IState>(
+              reducers,
+              preloadedState,
+              applyMiddleware(thunkMiddleware, loggerMiddleware)
+          )
+        : createReduxStore<IState>(reducers, applyMiddleware(thunkMiddleware, loggerMiddleware));
 }

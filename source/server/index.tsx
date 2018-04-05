@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import Loadable from "react-loadable";
-import { getBundles } from "react-loadable/webpack";
+import { getBundles, IReactLoadableWebpackBundle } from "react-loadable/webpack";
 import { Provider } from "react-redux";
 import { matchPath, StaticRouter } from "react-router";
 
@@ -10,7 +10,6 @@ import App from "../universal/app";
 import { IState } from "../universal/models";
 import { routes } from "../universal/routes";
 import createStore from "../universal/store";
-import { IReactLoadableWebpackBundle } from "../universal/types";
 
 const stats = require("./reactLoadable.json");
 const app = express();
@@ -42,7 +41,7 @@ function handleRender(req: Request, res: Response) {
                 </Provider>
             </Loadable.Capture>
         );
-        const bundles: IReactLoadableWebpackBundle[] = getBundles(stats, modules);
+        const bundles = getBundles(stats, modules);
         const styles = bundles.filter(bundle => bundle.file.endsWith(".css"));
         const scripts = bundles.filter(bundle => bundle.file.endsWith(".js"));
         const preloadedState = store.getState();

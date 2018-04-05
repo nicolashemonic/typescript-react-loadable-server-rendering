@@ -1,10 +1,10 @@
-import { combineReducers } from "redux";
+import { combineReducers, Reducer } from "redux";
 
 import { IState } from "../models";
-import about from "./about";
-import location from "./location";
+import about, { AboutState } from "./about";
+import location, { LocationState } from "./location";
 
 export default combineReducers<IState>({
-    about,
-    location
+    about: about as Reducer<AboutState>,
+    location: location as Reducer<LocationState>
 });

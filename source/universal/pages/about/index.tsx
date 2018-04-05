@@ -1,27 +1,30 @@
 import React from "react";
-import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
+import { connect } from "react-redux";
 import { Link, RouteComponentProps } from "react-router-dom";
-import { Action } from "redux";
+import { Action, Dispatch } from "redux";
 
 import { fetchDescription } from "../../actions";
 import { IState } from "../../models";
 
-interface IMapStateToProps {
-    locationChanged: boolean;
-    description: string;
-    isLoading: boolean;
-}
+type MapStateToProps = ReturnType<typeof mapStateToProps>;
+type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>;
+interface IAboutOwnProps extends RouteComponentProps<undefined> {}
+interface IAboutProps extends MapStateToProps, MapDispatchToProps, IAboutOwnProps {}
 
-interface IMapDispatchToProps {
-    fetchDescription: () => Promise<Action>;
-}
+const mapStateToProps = (state: IState, ownProps: IAboutOwnProps) => ({
+    locationChanged: state.location.locationChanged,
+    description: state.about.description,
+    isLoading: state.about.isLoading
+});
 
-interface IAboutOwnProps extends RouteComponentProps<any> {}
+const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: IAboutOwnProps) => ({
+    fetchDescription: () => {
+        return dispatch(fetchDescription());
+    }
+});
 
-interface IAboutProps extends IMapStateToProps, IMapDispatchToProps, IAboutOwnProps {}
-
-class About extends React.Component<IAboutProps, undefined> {
-    constructor(props) {
+class About extends React.Component<IAboutProps> {
+    constructor(props: IAboutProps) {
         super(props);
     }
     componentDidMount() {
@@ -43,25 +46,7 @@ class About extends React.Component<IAboutProps, undefined> {
     }
 }
 
-const mapStateToProps: MapStateToProps<IMapStateToProps, IAboutOwnProps, IState> = (
-    state,
-    ownProps
-) => ({
-    locationChanged: state.location.locationChanged,
-    description: state.about.description,
-    isLoading: state.about.isLoading
-});
-
-const mapDispatchToProps: MapDispatchToProps<IMapDispatchToProps, IAboutOwnProps> = (
-    dispatch,
-    ownProps
-) => ({
-    fetchDescription: () => {
-        return dispatch(fetchDescription());
-    }
-});
-
-export default connect<IMapStateToProps, IMapDispatchToProps, IAboutOwnProps>(
+export default connect<MapStateToProps, MapDispatchToProps, IAboutOwnProps, IState>(
     mapStateToProps,
     mapDispatchToProps
 )(About);

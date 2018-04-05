@@ -4,15 +4,16 @@ import {
     FETCH_DESCRIPTION_REQUEST,
     FETCH_DESCRIPTION_SUCCESS
 } from "../actions";
-import { IAboutState } from "../models";
 
-const initialAboutState: IAboutState = {
+export type AboutState = ReturnType<typeof initialAboutState>;
+
+const initialAboutState = () => ({
     description: "",
     receivedAt: 0,
     isLoading: false
-};
+});
 
-export default function about(state = initialAboutState, action: AboutAction) {
+export default function about(state = initialAboutState(), action: AboutAction): AboutState {
     switch (action.type) {
         case FETCH_DESCRIPTION_REQUEST:
             return {

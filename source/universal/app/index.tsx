@@ -1,28 +1,27 @@
 import React from "react";
-import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
+import { connect } from "react-redux";
 import { Route, RouteComponentProps, Switch, withRouter } from "react-router-dom";
-import { Action } from "redux";
+import { Dispatch } from "redux";
 
 import { setLocationChanged } from "../actions";
 import { IState } from "../models";
 import { routes } from "../routes";
 
-interface IMapStateToProps {}
+type MapStateToProps = ReturnType<typeof mapStateToProps>;
+type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>;
+interface IAppOwnProps extends RouteComponentProps<undefined> {}
+interface IAppProps extends IAppOwnProps, MapStateToProps, MapDispatchToProps {}
 
-interface IMapDispatchToProps {
-    setLocationChanged: () => Action;
-}
+const mapStateToProps = (state: IState, ownProps: IAppOwnProps) => ({});
 
-interface IAppOwnProps extends RouteComponentProps<any> {}
+const mapDispatchToProps = (dispatch: Dispatch<any>, ownProps: IAppOwnProps) => ({
+    setLocationChanged: () => dispatch(setLocationChanged())
+});
 
-interface IAppProps extends IMapStateToProps, IMapDispatchToProps, IAppOwnProps {}
-
-class App extends React.Component<IAppProps, undefined> {
-    constructor(props) {
+class App extends React.Component<IAppProps> {
+    constructor(props: IAppProps) {
         super(props);
-    }
 
-    componentDidMount() {
         const unsubscribeHistory = this.props.history.listen(location => {
             this.props.setLocationChanged();
             unsubscribeHistory();
@@ -30,30 +29,12 @@ class App extends React.Component<IAppProps, undefined> {
     }
 
     render() {
-        return (
-            <div>
-                <Switch>{routes.map(route => <Route {...route} key={route.path} />)}</Switch>
-            </div>
-        );
+        return <Switch>{routes.map(route => <Route {...route} key={route.path} />)}</Switch>;
     }
 }
 
-const mapStateToProps: MapStateToProps<IMapStateToProps, IAppOwnProps, IState> = (
-    state,
-    ownProps
-): IMapStateToProps => ({});
-
-const mapDispatchToProps: MapDispatchToProps<IMapDispatchToProps, IAppOwnProps> = (
-    dispatch,
-    ownProps
-) => ({
-    setLocationChanged: () => {
-        return dispatch(setLocationChanged());
-    }
-});
-
-export default withRouter<IAppOwnProps>(
-    connect<IMapStateToProps, IMapDispatchToProps, IAppOwnProps>(
+export default withRouter(
+    connect<MapStateToProps, MapDispatchToProps, IAppOwnProps, IState>(
         mapStateToProps,
         mapDispatchToProps
     )(App)

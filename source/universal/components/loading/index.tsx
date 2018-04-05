@@ -1,9 +1,7 @@
 import React from "react";
 import { LoadingComponentProps } from "react-loadable";
 
-interface ILoadingProps extends LoadingComponentProps {}
-
-export default function Loading(props: ILoadingProps) {
+export default function Loading(props: LoadingComponentProps) {
     if (props.isLoading) {
         if (props.timedOut) {
             return <p>Loader timed out!</p>;
