@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, RouteComponentProps } from "react-router-dom";
-import { Action, Dispatch } from "redux";
+import { Dispatch } from "redux";
 
 import { fetchDescription } from "../../actions";
 import { IState } from "../../models";

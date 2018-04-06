@@ -55,7 +55,7 @@ module.exports = {
     // this way Webpack will always find the file when he build backend before frontend
     plugins: [
         new ReactLoadablePlugin({
-            filename: path.join(__dirname, "..", "source", "server", "reactLoadable.json")
+            filename: path.join(__dirname, "..", "source", "server", "stats", "reactLoadable.json")
         })
     ]
 };

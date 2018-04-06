@@ -1,33 +1,32 @@
 import {
     AboutAction,
-    FETCH_DESCRIPTION_FAILURE,
-    FETCH_DESCRIPTION_REQUEST,
-    FETCH_DESCRIPTION_SUCCESS
+    FETCH_ABOUT_FAILURE,
+    FETCH_ABOUT_REQUEST,
+    FETCH_ABOUT_SUCCESS
 } from "../actions";
+import { IAboutState } from "../models";
 
-export type AboutState = ReturnType<typeof initialAboutState>;
-
-const initialAboutState = () => ({
+const initialAboutState = (): IAboutState => ({
     description: "",
     receivedAt: 0,
     isLoading: false
 });
 
-export default function about(state = initialAboutState(), action: AboutAction): AboutState {
+export default function about(state = initialAboutState(), action: AboutAction): IAboutState {
     switch (action.type) {
-        case FETCH_DESCRIPTION_REQUEST:
+        case FETCH_ABOUT_REQUEST:
             return {
                 ...state,
                 isLoading: action.isLoading
             };
-        case FETCH_DESCRIPTION_SUCCESS:
+        case FETCH_ABOUT_SUCCESS:
             return {
                 ...state,
                 isLoading: action.isLoading,
                 receivedAt: action.receivedAt,
                 description: action.description
             };
-        case FETCH_DESCRIPTION_FAILURE:
+        case FETCH_ABOUT_FAILURE:
             return {
                 ...state,
                 isLoading: action.isLoading

@@ -1,9 +1,9 @@
-import { AboutState } from "../reducers/about";
-import { ApiState } from "../reducers/api";
-import { LocationState } from "../reducers/location";
+import { IAboutState } from "./about";
+import { IApiState } from "./api";
+import { ILocationState } from "./location";
 
 export interface IState {
-    readonly about: AboutState;
-    readonly location: LocationState;
-    readonly api: ApiState;
+    readonly about: IAboutState;
+    readonly api: IApiState;
+    readonly location: ILocationState;
 }

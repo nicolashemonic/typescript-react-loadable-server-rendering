@@ -1,15 +1,14 @@
 import { LocationAction, SET_LOCATION_CHANGED } from "../actions";
+import { ILocationState } from "../models";
 
-export type LocationState = ReturnType<typeof initialLocationState>;
-
-const initialLocationState = () => ({
+const initialLocationState = (): ILocationState => ({
     locationChanged: false
 });
 
 export default function location(
     state = initialLocationState(),
     action: LocationAction
-): LocationState {
+): ILocationState {
     switch (action.type) {
         case SET_LOCATION_CHANGED:
             return {

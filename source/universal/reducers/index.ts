@@ -1,12 +1,12 @@
 import { combineReducers, Reducer } from "redux";
 
-import { IState } from "../models";
-import about, { AboutState } from "./about";
-import api, { ApiState } from "./api";
-import location, { LocationState } from "./location";
+import { IState, IAboutState, IApiState, ILocationState } from "../models";
+import about from "./about";
+import api from "./api";
+import location from "./location";
 
 export default combineReducers<IState>({
-    about: about as Reducer<AboutState>,
-    location: location as Reducer<LocationState>,
-    api: api as Reducer<ApiState>
+    about: about as Reducer<IAboutState>,
+    location: location as Reducer<ILocationState>,
+    api: api as Reducer<IApiState>
 });

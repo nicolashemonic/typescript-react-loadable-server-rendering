@@ -1,17 +1,16 @@
 import { ApiAction, SET_API_URLS } from "../actions/api";
+import { IApi } from "../models";
 
-export type ApiState = ReturnType<typeof initialApiState>;
-
-const initialApiState = () => ({
-    descriptionUrl: ""
+const initialApiState = (): IApi => ({
+    aboutUrl: ""
 });
 
-export default function api(state = initialApiState(), action: ApiAction): ApiState {
+export default function api(state = initialApiState(), action: ApiAction): IApi {
     switch (action.type) {
         case SET_API_URLS:
             return {
                 ...state,
-                descriptionUrl: action.descriptionUrl
+                aboutUrl: action.aboutUrl
             };
         default:
             return state;
