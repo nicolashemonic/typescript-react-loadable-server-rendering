@@ -11,7 +11,7 @@ module.exports = {
         path: path.join(__dirname, "..", "client"),
         filename: "[name].js",
         chunkFilename: "[name].js",
-        publicPath: "/client/"
+        publicPath: "/static/js/"
     },
 
     // Webpack need to resolve ts(x) file from source code and js(x) files from dependencies

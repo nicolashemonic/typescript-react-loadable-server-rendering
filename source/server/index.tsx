@@ -8,7 +8,8 @@ import routesApi from "./routes/api";
 
 const app = express();
 
-app.use("/client", express.static("client"));
+app.use("/static", express.static("static"));
+app.use("/static/js", express.static("client"));
 app.use("/api", routesApi);
 app.use(mainController);
 
