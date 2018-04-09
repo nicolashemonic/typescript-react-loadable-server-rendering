@@ -58,5 +58,7 @@ typings/
 .env
 
 # Build
-client/
-server/
+client/*.js
+client/*.js.map
+server/*.js
+server/*.js.map
