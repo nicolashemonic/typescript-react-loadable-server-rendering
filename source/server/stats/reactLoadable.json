@@ -220,8 +220,18 @@
       "file": "main.js"
     },
     {
+      "id": "./source/universal/actions/api.ts",
+      "name": "./source/universal/actions/api.ts",
+      "file": "main.js"
+    },
+    {
       "id": "./source/universal/reducers/api.ts",
       "name": "./source/universal/reducers/api.ts",
+      "file": "main.js.map"
+    },
+    {
+      "id": "./source/universal/actions/api.ts",
+      "name": "./source/universal/actions/api.ts",
       "file": "main.js.map"
     }
   ],
@@ -256,18 +266,6 @@
     {
       "id": "./source/universal/actions/index.ts",
       "name": "./source/universal/actions/index.ts",
-      "file": "main.js.map"
-    }
-  ],
-  "../actions/api": [
-    {
-      "id": "./source/universal/actions/api.ts",
-      "name": "./source/universal/actions/api.ts",
-      "file": "main.js"
-    },
-    {
-      "id": "./source/universal/actions/api.ts",
-      "name": "./source/universal/actions/api.ts",
       "file": "main.js.map"
     }
   ],
@@ -3383,7 +3381,7 @@
       "file": "main.js.map"
     }
   ],
-  "./modules/es6.map": [
+  "./es6.map": [
     {
       "id": "./node_modules/babel-polyfill/node_modules/core-js/modules/es6.map.js",
       "name": "./node_modules/babel-polyfill/node_modules/core-js/modules/es6.map.js",
@@ -3407,7 +3405,7 @@
       "file": "main.js.map"
     }
   ],
-  "./modules/es6.weak-map": [
+  "./es6.weak-map": [
     {
       "id": "./node_modules/babel-polyfill/node_modules/core-js/modules/es6.weak-map.js",
       "name": "./node_modules/babel-polyfill/node_modules/core-js/modules/es6.weak-map.js",

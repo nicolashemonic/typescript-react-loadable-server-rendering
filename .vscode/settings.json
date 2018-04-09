@@ -1,5 +1,9 @@
 {
     "editor.formatOnSave": true,
+    "html.format.enable": false,
+    "prettier.disableLanguages": [
+        "html"
+    ],
     "prettier.useTabs": true,
     "prettier.jsxBracketSameLine": true,
     "editor.minimap.enabled": false,
