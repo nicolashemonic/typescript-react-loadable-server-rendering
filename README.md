@@ -10,7 +10,7 @@ Its main purpose is to respond to this questions:
 - How to use React Router in both case ?
 - How to build all this features ?
 
-And the last but not the least, How to take make compatible and take advantage of TypeScript in all this features ?
+And the last but not the least, this project demonstrate and explain how to make compatible and take advantage of TypeScript in all this features.
 
 ### Quick Start
 
@@ -66,11 +66,11 @@ Server rendering is dependent on these build step:
 1. TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel
 2. Babel transform React jsx and es2015 synthax into code understandable
  by the browser
-3. Babel apply plugins to make code splitting compatible with Server rendering
+3. Babel apply plugins to make code splitting compatible with server rendering
 
 ### Documentation
 
-This sample project was made according to these documentation.
+This sample project was made according to these documentations.
 
 Code Splitting
 
