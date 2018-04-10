@@ -5,6 +5,7 @@ module.exports = {
     // The main entry point of the application
     entry: ["babel-polyfill", path.join(__dirname, "..", "source", "client")],
 
+    // The main entry point source/client/index.tsx
     // Main entry point plus each dynamic import generate a bundle
     // Ex: import(/* webpackChunkName: "about" */ "../pages/about") generate about.js
     output: {
