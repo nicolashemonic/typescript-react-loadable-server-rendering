@@ -30,7 +30,8 @@ module.exports = {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: [
-                    // 2. Babel transform and apply plugins on the TypeScript output regardless options below
+                    // 2. Babel transform React jsx and es2015 synthax into code understandable by the browser
+                    //    Babel apply plugins to make code splitting compatible with server rendering
                     {
                         loader: "babel-loader",
                         options: {
@@ -39,11 +40,11 @@ module.exports = {
                             plugins: ["dynamic-import-node", "react-loadable/babel"]
                         }
                     },
-                    // 1. TypeScript type check the source code and regardless tsconfig.server.json keep intact the code
+                    // 1. TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel
                     {
                         loader: "ts-loader",
                         options: {
-                            configFile: require.resolve("./tsconfig.server.json"),
+                            configFile: require.resolve("./tsconfig.json"),
                             context: __dirname
                         }
                     }

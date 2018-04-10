@@ -1,8 +1,8 @@
 {
-  "name": "react-loadable-ssr",
+  "name": "typescript-react-loadable-server-rendering",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "React code splitting plus server rendering using TypeScript.",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "npm run clean && npm run build -- -d --devtool source-map",

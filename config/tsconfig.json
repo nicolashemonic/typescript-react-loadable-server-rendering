@@ -1,5 +1,5 @@
 {
-    // TypeScript type check *only* and keep intact the source code (without types) for Babel
+    // TypeScript type check and emit JavaScript es2015 (TypeScript without types) for Babel
     // This behavior enable the possibility to use babel plugins for server side rendering:
     // * Presets for code transformation: React + es2015
     // * Plugins for server side rendering:
@@ -30,5 +30,9 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "strictNullChecks": true
-    }
+    },
+    // Allow compiler to find ts(x) files in source folder
+    "include": [
+        "../source"
+    ]
 }

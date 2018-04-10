@@ -1,14 +1,14 @@
 ### TypeScript, Code splitting and Server rendering
 
-A simple React project to demonstrate how to achieve code splitting plus server rendering using TypeScript.
+A React example project to demonstrate how to achieve code splitting plus server rendering using TypeScript.
 
-Its main purpose is to respond to this questions:
+Its main goals are:
 
-- How to implement React code splitting ?
-- How to implement React server rendering ?
-- How to use Redux with server rendering ?
-- How to use React Router in both case ?
-- How to build all this features ?
+- Implement React code splitting
+- Implement React server rendering
+- Use Redux with server rendering
+- Use React Router in both case
+- Build all this features
 
 And the last but not the least, this project demonstrate and explain how to make compatible and take advantage of TypeScript in all this features.
 
@@ -64,7 +64,7 @@ Code splitting is made possible using React Loadable and Webpack dynamic imports
 Server rendering is dependent on these build step:
 
 1. TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel
-2. Babel transform React jsx and es2015 synthax into code understandable
+2. Babel transform React jsx and es2015 synthax into code understandable by the browser
  by the browser
 3. Babel apply plugins to make code splitting compatible with server rendering
 
