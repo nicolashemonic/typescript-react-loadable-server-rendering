@@ -1,11 +1,19 @@
 {
     "editor.formatOnSave": true,
     "html.format.enable": false,
+    "files.associations": {
+        "*.html": "handlebars", // es6 template syntax not recognized
+        "*.json": "jsonc"
+    },
     "prettier.disableLanguages": [
-        "html"
+        "html" // es6 template syntax not recognized
     ],
-    "prettier.useTabs": true,
     "prettier.jsxBracketSameLine": true,
     "editor.minimap.enabled": false,
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/server": true,
+        "**/client": true,
+    },
 }

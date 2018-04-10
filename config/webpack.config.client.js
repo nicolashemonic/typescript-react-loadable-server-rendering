@@ -28,7 +28,7 @@ module.exports = {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: [
-                    // 2. Babel transform React jsx and es2015 synthax into code understandable by the browser
+                    // 2. Babel transform React jsx and es2015 syntax into code understandable by the browser
                     //    Babel apply plugins to make code splitting compatible with server rendering
                     {
                         loader: "babel-loader",
