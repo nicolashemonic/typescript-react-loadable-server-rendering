@@ -6,7 +6,7 @@ module.exports = {
     entry: ["babel-polyfill", path.join(__dirname, "..", "source", "client")],
 
     // Main entry point plus each dynamic import generate a bundle
-    // Ex: import(/* webpackChunkName: "hello" */"../components/hello") generate hello.js
+    // Ex: import(/* webpackChunkName: "about" */ "../pages/about") generate about.js
     output: {
         path: path.join(__dirname, "..", "client"),
         filename: "[name].js",
@@ -52,8 +52,8 @@ module.exports = {
 
     // React Loadable generate stats for mapping modules to bundle
     // This file is used on server side rendering to determine which bundle need to be load
-    // Webpack build frontend and backend simultaneously so we need to commit reactLodable.json in source
-    // this way Webpack will always find the file when the backend build append before frontend
+    // Webpack build server and client simultaneously so we need to commit reactLodable.json in source
+    // this way Webpack will always find the file when the server build append before client
     plugins: [
         new ReactLoadablePlugin({
             filename: path.join(__dirname, "..", "source", "server", "stats", "reactLoadable.json")

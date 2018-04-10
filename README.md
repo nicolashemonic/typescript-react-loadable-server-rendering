@@ -63,10 +63,15 @@ Code splitting is made possible using React Loadable and Webpack dynamic imports
 
 Server rendering is dependent on these build step:
 
-1. TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel
-2. Babel transform React jsx and es2015 synthax into code understandable by the browser
- by the browser
-3. Babel apply plugins to make code splitting compatible with server rendering
+1. TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel.
+2. Babel transform React jsx and es2015 synthax into code understandable by the browser.
+3. Babel apply plugins to make code splitting compatible with server rendering.
+On server build
+```dynamic-import-node``` transpile import() to a deferred require() for node.
+On client build
+```syntax-dynamic-import``` allow babel to parse dynamic import synthax but not transform it. Then Webpack split code via dynamic import.
+On both build
+```react-loadable/babel``` declare wich modules are being loaded.
 
 ### Documentation
 

@@ -8,7 +8,7 @@ module.exports = {
     // Ignore node_modules
     externals: [nodeExternals()],
 
-    // The main entry point of the server application
+    // The main entry point source/server/index.tsx
     entry: ["babel-polyfill", path.join(__dirname, "..", "source", "server")],
 
     // Generated bundle location

@@ -3,8 +3,7 @@ import { buildAbout } from "../builders";
 
 const externalApiMock = () => {
     return new Promise<string>(resolve => {
-        const description =
-            "React Server Side Rendering and Code Splitting with TypeScript </script><script>alert('XSS')</script>";
+        const description = "React code splitting plus server rendering using TypeScript.";
         setTimeout(() => resolve(description), 1000);
     });
 };
