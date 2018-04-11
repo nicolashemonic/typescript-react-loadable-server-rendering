@@ -12,8 +12,8 @@
     "editor.minimap.enabled": false,
     "typescript.tsdk": "node_modules\\typescript\\lib",
     "files.exclude": {
-        "**/node_modules": true,
-        "**/server": true,
-        "**/client": true,
+        "node_modules": true,
+        "server": true,
+        "client": true,
     },
 }

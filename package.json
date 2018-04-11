@@ -10,9 +10,7 @@
     "build": "webpack --config config/webpack.config.js",
     "watch": "npm run clean && npm run build -- -d --watch --devtool source-map",
     "watch-node": "nodemon server/main.js",
-    "clean-client": "rimraf client",
-    "clean-server": "rimraf server",
-    "clean": "npm run clean-client && npm run clean-server",
+    "clean": "rimraf client server",
     "serve": "node server/main.js"
   },
   "author": "Nicolas Hémonic",
