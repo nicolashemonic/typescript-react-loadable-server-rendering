@@ -1,6 +1,6 @@
 ### TypeScript, Code splitting and Server rendering
 
-A React example project to demonstrate how to achieve code splitting plus server rendering using TypeScript.
+A React example project to demonstrate how to achieve code splitting plus server rendering using TypeScript 😍😍😍.
 
 Its main goals are:
 
@@ -10,7 +10,7 @@ Its main goals are:
 - Use React Router in both case
 - Build all this features
 
-And the last but not the least, this project demonstrate and explain how to make compatible and take advantage of TypeScript in all this features.
+And the last but not the least, this project demonstrate and explain how to make compatible and take advantage of TypeScript in all this features 💪.
 
 ### Quick Start
 
@@ -44,8 +44,14 @@ Server
 Build tools
 
 - Webpack v4
+    - [ts-loader](https://github.com/TypeStrong/ts-loader)
+    - [babel-loader](https://github.com/babel/babel-loader)
 - Babel v6
-- TypeScript loader
+    - [babel-preset-env](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
+    - [babel-preset-react](https://github.com/babel/babel/tree/master/packages/babel-preset-react)
+    - [babel-plugin-syntax-dynamic-import](https://babeljs.io/docs/plugins/syntax-dynamic-import/)
+    - [babel-plugin-dynamic-import-node](https://github.com/airbnb/babel-plugin-dynamic-import-node)
+    - [react-loadable/babel](https://github.com/jamiebuilds/react-loadable#declaring-which-modules-are-being-loaded)
 
 ### Code
 

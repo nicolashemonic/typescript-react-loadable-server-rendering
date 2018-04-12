@@ -36,7 +36,15 @@ module.exports = {
                         loader: "babel-loader",
                         options: {
                             babelrc: false,
-                            presets: ["es2015", "react"],
+                            presets: [
+                                "react",
+                                [
+                                    "env",
+                                    {
+                                        modules: false
+                                    }
+                                ]
+                            ],
                             plugins: ["dynamic-import-node", "react-loadable/babel"]
                         }
                     },
