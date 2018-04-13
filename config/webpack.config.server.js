@@ -5,7 +5,7 @@ module.exports = {
     // Set Webpack build for Node.js
     target: "node",
 
-    // Ignore node_modules
+    // Exclude node_modules from the bundle
     externals: [nodeExternals()],
 
     // The main entry point source/server/index.tsx
@@ -17,7 +17,7 @@ module.exports = {
         filename: "[name].js"
     },
 
-    // Webpack need to resolve ts(x) file from source code and js(x) files from dependencies
+    // Source files take into account
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
@@ -30,8 +30,9 @@ module.exports = {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: [
-                    // 2. Babel transform React jsx and es2015 syntax into code understandable by the browser
-                    //    Babel apply plugins to make code splitting compatible with server rendering
+                    // 2. babel-preset-react transform React jsx and babel-preset-env es2015 syntax into code understandable by the browser
+                    //    dynamic-import-node transpile import() to a deferred require() for node
+                    //    react-loadable/babel declare wich modules are being loaded
                     {
                         loader: "babel-loader",
                         options: {

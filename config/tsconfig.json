@@ -1,19 +1,15 @@
 {
-    // TypeScript type check and emit JavaScript es2015 (TypeScript without types) for Babel
-    // This behavior enable the possibility to use babel plugins for server side rendering:
-    // * Presets for code transformation: React + es2015
-    // * Plugins for server side rendering:
-    //      Frontend: syntax-dynamic-import + react-loadable/babel
-    //      Backend: dynamic-import-node + react-loadable/babel
+    // TypeScript type check and emit JavaScript es2015 (TypeScript without types) consumable by Babel.
+    // This behavior enable the possibility to use babel plugins for server side rendering.
 
     "compilerOptions": {
-        // keep es2015 import
+        // Preserve es2015 import
         "target": "es2015",
 
-        // Keep dynamic import
+        // Preserve dynamic import
         "module": "esnext",
 
-        // Keep jsx syntax
+        // Preserve React jsx syntax
         "jsx": "preserve",
 
         // Allow import X from "x"

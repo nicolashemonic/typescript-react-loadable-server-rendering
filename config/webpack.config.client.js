@@ -15,7 +15,7 @@ module.exports = {
         publicPath: "/static/js/"
     },
 
-    // Webpack need to resolve ts(x) file from source code and js(x) files from dependencies
+    // Source files take into account
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx"]
     },
@@ -28,8 +28,9 @@ module.exports = {
                 test: /\.ts(x?)$/,
                 exclude: /node_modules/,
                 use: [
-                    // 2. Babel transform React jsx and es2015 syntax into code understandable by the browser
-                    //    Babel apply plugins to make code splitting compatible with server rendering
+                    // 2. babel-preset-react transform React jsx and babel-preset-env es2015 syntax into code understandable by the browser
+                    //    syntax-dynamic-import allow babel to parse dynamic import syntax but not transform it
+                    //    react-loadable/babel declare wich modules are being loaded
                     {
                         loader: "babel-loader",
                         options: {
